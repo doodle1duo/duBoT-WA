@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUbot — El Mejor Bot para WhatsApp</title>
-    <meta name="description" content="Consigue DUbot para tu WhatsApp. Economía, Jadibots, Casino, IA Gemini, Descargas y más. Contacta a Chile Pesos (+56985529966).">
+    <meta name="description" content="Vincula tu Subbot DUbot por código o QR (.subbot code / .subbot qr). Economía, Jadibots, Casino, IA Gemini, Descargas y más. Contacta a Chile Pesos (+56985529966).">
     
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
@@ -245,6 +245,47 @@
             background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+        }
+
+        
+        .subbot-hero-card {
+            background: rgba(18, 26, 38, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+            max-width: 750px;
+            width: 100%;
+        }
+
+        .subbot-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-subbot-code {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35) !important;
+        }
+
+        .btn-subbot-qr {
+            background: linear-gradient(135deg, #00f0ff 0%, #0077be 100%) !important;
+            color: #05141f !important;
+            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.35) !important;
+        }
+
+        .btn-subbot-qr:hover {
+            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.55) !important;
+            color: #000000 !important;
         }
 
         /* Stats Bar */
@@ -637,15 +678,17 @@
             <li><a href="#commands">Comandos</a></li>
             <li><a href="#creator">Creador</a></li>
         </ul>
-        <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20quiero%20conseguir%20el%20bot%20DUbot%20para%20mi%20WhatsApp" class="btn-nav" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i> Conseguir Bot
-        </a>
+        <div class="nav-subbot-dropdown">
+            <a href="#subbot-selector" class="btn-nav">
+                <i class="fa-solid fa-robot"></i> .subbot (code/qr)
+            </a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="badge">
-            <i class="fa-solid fa-bolt"></i> Official WhatsApp Bot v1.1.0
+            <i class="fa-solid fa-bolt"></i> Official WhatsApp Bot v1.1.1 (Hotfix Subbots)
         </div>
         <h1>
             Potencia tus grupos de WhatsApp con <span class="gradient-text">DUbot</span>
@@ -654,13 +697,29 @@
             El bot multifuncional definitivo con economía completa, juegos de casino, sub-bots Jadibots, Inteligencia Artificial Gemini, descargas de música y mucho más.
         </p>
 
-        <div class="hero-cta-group">
-            <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20quiero%20conseguir%20el%20bot%20DUbot%20para%20mi%20WhatsApp" class="btn-main-cta" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i> Conseguir Bot Ahora
-            </a>
-            <a href="#features" class="btn-secondary-cta">
-                <i class="fa-solid fa-compass"></i> Explorar Funciones
-            </a>
+        <div class="subbot-hero-card" id="subbot-selector">
+            <div class="subbot-card-title">
+                <i class="fa-solid fa-plug-circle-check"></i> Elige tu método de vinculación:
+            </div>
+            <div class="hero-cta-group">
+                <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-main-cta btn-subbot-code" target="_blank">
+                    <i class="fa-solid fa-key"></i>
+                    <div style="text-align:left;">
+                        <div style="font-size:0.75rem; opacity:0.85; font-weight:600;">MÉTODO RECOMENDADO</div>
+                        <div>.subbot code</div>
+                    </div>
+                </a>
+                <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-main-cta btn-subbot-qr" target="_blank">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <div style="text-align:left;">
+                        <div style="font-size:0.75rem; opacity:0.85; font-weight:600;">ESCANEAR PANTALLA</div>
+                        <div>.subbot qr</div>
+                    </div>
+                </a>
+                <a href="#features" class="btn-secondary-cta">
+                    <i class="fa-solid fa-compass"></i> Ver Funciones
+                </a>
+            </div>
         </div>
 
         <div class="stats-bar">
@@ -868,9 +927,15 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 1.8rem;">
-                    <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20quiero%20conseguir%20el%20bot%20DUbot%20para%20mi%20WhatsApp" class="btn-main-cta" style="padding: 0.85rem 1.8rem; font-size: 1rem;" target="_blank">
-                        <i class="fa-brands fa-whatsapp"></i> Hablar con Chile Pesos
+                <div style="margin-top: 1.8rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                    <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-main-cta btn-subbot-code" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
+                        <i class="fa-solid fa-key"></i> .subbot code
+                    </a>
+                    <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-main-cta btn-subbot-qr" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
+                        <i class="fa-solid fa-qrcode"></i> .subbot qr
+                    </a>
+                    <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20tengo%20una%20duda%20con%20DUbot" class="btn-secondary-cta" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> Contactar Creador
                     </a>
                 </div>
             </div>
@@ -879,11 +944,16 @@
 
     <!-- CTA Banner -->
     <section class="cta-banner">
-        <h2>¿Listo para activar <span class="gradient-text">DUbot</span>?</h2>
-        <p>Haz clic en el botón de abajo para contactar al creador y recibir el bot en tu chat o grupo al instante.</p>
-        <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20quiero%20conseguir%20el%20bot%20DUbot%20para%20mi%20WhatsApp" class="btn-main-cta" style="font-size: 1.3rem; padding: 1.2rem 3rem;" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i> ¡Conseguir Bot Ahora!
-        </a>
+        <h2>¿Listo para activar tu <span class="gradient-text">Sub-bot</span>?</h2>
+        <p>Elige tu método preferido (.subbot code o .subbot qr) para enviar el comando al bot y recibir tu acceso al instante.</p>
+        <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-main-cta btn-subbot-code" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;" target="_blank">
+                <i class="fa-solid fa-key"></i> .subbot code (8 dígitos)
+            </a>
+            <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-main-cta btn-subbot-qr" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;" target="_blank">
+                <i class="fa-solid fa-qrcode"></i> .subbot qr (Código QR)
+            </a>
+        </div>
     </section>
 
     <!-- Floating WhatsApp Button -->
