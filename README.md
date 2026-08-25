@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![DUbot Banner](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png)
+![DUbot Banner](files.catbox.moe/lcxgix.png)
 
 [![NodeJS](https://img.shields.io/badge/Node.js-v18+-68a063?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Baileys](https://img.shields.io/badge/Baileys-@whiskeysockets-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://github.com/WhiskeySockets/Baileys)
