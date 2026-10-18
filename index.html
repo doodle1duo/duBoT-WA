@@ -25,17 +25,18 @@
             --bg-card: rgba(13, 20, 34, 0.75);
             --bg-card-hover: rgba(19, 30, 52, 0.92);
             --primary: #25D366;
-            --primary-glow: rgba(37, 211, 102, 0.35);
+            --primary-glow: rgba(37, 211, 102, 0.25);
             --secondary: #00e5ff;
-            --secondary-glow: rgba(0, 229, 255, 0.35);
+            --secondary-glow: rgba(0, 229, 255, 0.25);
             --accent: #a855f7;
             --warning: #ffb800;
             --text-main: #f0f4fc;
             --text-muted: #8ea0be;
             --border: rgba(255, 255, 255, 0.08);
             --border-hover: rgba(37, 211, 102, 0.45);
-            --gradient: linear-gradient(135deg, #25D366 0%, #00e5ff 100%);
-            --gradient-accent: linear-gradient(135deg, #a855f7 0%, #00e5ff 100%);
+            --primary-btn: #25D366;
+            --primary-btn-hover: #22bf5b;
+            --gradient: #25D366;
         }
 
         * {
@@ -873,36 +874,183 @@
             margin-right: auto;
         }
 
-        /* Floating WhatsApp Button */
-        .floating-wa {
+        /* FAQ Assistant Launcher Button */
+        .assistant-launcher {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            background: #25D366;
+            padding: 0.85rem 1.4rem;
+            border-radius: 50px;
+            background: #111a2e;
+            border: 1px solid var(--primary);
             color: #fff;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            text-decoration: none;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--primary-glow);
             z-index: 9999;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: bounceBtn 3s infinite;
+            font-weight: 700;
+            font-size: 0.95rem;
         }
 
-        .floating-wa:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.8);
+        .assistant-launcher:hover {
+            transform: translateY(-3px);
+            background: #16223d;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px var(--primary-glow);
+        }
+
+        .assistant-launcher .owl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* FAQ Modal / Chat Window */
+        .faq-modal {
+            position: fixed;
+            bottom: 85px;
+            right: 25px;
+            width: 370px;
+            max-width: calc(100vw - 40px);
+            max-height: 540px;
+            background: #0b111e;
+            border: 1px solid rgba(37, 211, 102, 0.35);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+            display: none;
+            flex-direction: column;
+            z-index: 10000;
+            overflow: hidden;
+            animation: modalFadeIn 0.25s ease forwards;
+        }
+
+        .faq-modal.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .faq-header {
+            padding: 1rem 1.2rem;
+            background: #111a2e;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .faq-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .faq-close-btn:hover {
             color: #fff;
         }
 
-        @keyframes bounceBtn {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        .faq-body {
+            padding: 1.2rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-quick-btn {
+            background: #131d33;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.65rem 0.9rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq-quick-btn:hover {
+            border-color: var(--primary);
+            background: #182542;
+            color: var(--primary);
+        }
+
+        .faq-chat-msg {
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+
+        .faq-msg-bot {
+            background: #141f36;
+            color: #e2eafc;
+            border-left: 3px solid var(--primary);
+            align-self: flex-start;
+        }
+
+        .faq-msg-user {
+            background: #25D366;
+            color: #031207;
+            font-weight: 600;
+            align-self: flex-end;
+        }
+
+        .faq-input-area {
+            padding: 0.8rem;
+            background: #0e1526;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+        }
+
+        .faq-input {
+            flex: 1;
+            background: #070c16;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 0.9rem;
+            color: #fff;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .faq-input:focus {
+            border-color: var(--primary);
+        }
+
+        .faq-send-btn {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            padding: 0 1rem;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         /* Toast notification */
@@ -1067,19 +1215,8 @@
                 </div>
             </div>
 
-            <!-- Server URL Config (Optional for GitHub Pages / remote hosting) -->
-            <div id="remoteServerConfig" style="max-width:620px; margin:0 auto 1.2rem; text-align:left;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                    <label style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:600;">
-                        <i class="fa-solid fa-server"></i> Servidor API del Bot:
-                    </label>
-                    <span id="serverStatusBadge" style="font-size:0.75rem; color:var(--primary); font-weight:600;">Detectando...</span>
-                </div>
-                <input type="text" id="apiServerHost" class="cmd-search-input" placeholder="http://localhost:3000 o IP/Dominio de tu VPS" style="width:100%; font-size:0.85rem; padding:0.6rem 1rem; border-radius:10px;">
-            </div>
-
-            <div style="display:flex; justify-content:center; gap:12px; margin-bottom:1.2rem;">
-                <button type="button" id="btnStartPairing" onclick="startWebPairing()" class="btn-subbot-code" style="cursor:pointer; border:none; padding:0.95rem 2.4rem; font-size:1.1rem; box-shadow:0 8px 30px var(--primary-glow);">
+            <div style="display:flex; justify-content:center; gap:12px; margin-top:1rem; margin-bottom:1.2rem;">
+                <button type="button" id="btnStartPairing" onclick="startWebPairing()" class="btn-subbot-code" style="cursor:pointer; border:none; padding:1rem 2.6rem; font-size:1.15rem; font-weight:800; border-radius:50px; background:#25D366; color:#031207; box-shadow:0 8px 30px var(--primary-glow); display:inline-flex; align-items:center; gap:10px;">
                     <i class="fa-solid fa-bolt"></i> Vincular Sub-bot Ahora
                 </button>
             </div>
@@ -1523,10 +1660,53 @@ Reacción: 🎉
         <span id="toastMsg">Comando copiado al portapapeles</span>
     </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20quiero%20conseguir%20el%20bot%20DUbot%20para%20mi%20WhatsApp" class="floating-wa" target="_blank" title="Contactar por WhatsApp (+56985529966)">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <!-- FAQ Assistant Launcher -->
+    <button class="assistant-launcher" id="assistantLauncher" onclick="toggleFaqModal()" title="Abrir Asistente DUbot">
+        <span class="owl-dot"></span>
+        <span><i class="fa-solid fa-robot"></i> Asistente DUbot</span>
+    </button>
+
+    <!-- FAQ Assistant Chat Window -->
+    <div class="faq-modal" id="faqModal">
+        <div class="faq-header">
+            <div class="faq-header-title">
+                <i class="fa-solid fa-robot" style="color:var(--primary);"></i>
+                <span>Asistente DUbot (FAQ)</span>
+            </div>
+            <button class="faq-close-btn" onclick="toggleFaqModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="faq-body" id="faqMessages">
+            <div class="faq-chat-msg faq-msg-bot">
+                ¡Hola! 🦉 Soy el asistente oficial de <strong>DUbot</strong>. ¿Tienes dudas sobre cómo usar el bot o vincularte? Elige una pregunta frecuente o escribe tu consulta:
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px; margin:6px 0;" id="faqQuickQuestions">
+                <button class="faq-quick-btn" onclick="askFaq('vinculacion')">
+                    <span><i class="fa-solid fa-plug"></i> ¿Cómo vinculo mi Sub-bot?</span>
+                    <i class="fa-solid fa-chevron-right" style="opacity:0.5; font-size:0.75rem;"></i>
+                </button>
+                <button class="faq-quick-btn" onclick="askFaq('contar')">
+                    <span><i class="fa-solid fa-dice-d20"></i> ¿Cómo funciona el juego .contar?</span>
+                    <i class="fa-solid fa-chevron-right" style="opacity:0.5; font-size:0.75rem;"></i>
+                </button>
+                <button class="faq-quick-btn" onclick="askFaq('video')">
+                    <span><i class="fa-solid fa-video"></i> ¿Cómo ver videos con .video?</span>
+                    <i class="fa-solid fa-chevron-right" style="opacity:0.5; font-size:0.75rem;"></i>
+                </button>
+                <button class="faq-quick-btn" onclick="askFaq('comandos')">
+                    <span><i class="fa-solid fa-terminal"></i> ¿Cuáles son los comandos principales?</span>
+                    <i class="fa-solid fa-chevron-right" style="opacity:0.5; font-size:0.75rem;"></i>
+                </button>
+                <button class="faq-quick-btn" onclick="askFaq('admin')">
+                    <span><i class="fa-solid fa-crown"></i> ¿Qué funciones tienen los admins?</span>
+                    <i class="fa-solid fa-chevron-right" style="opacity:0.5; font-size:0.75rem;"></i>
+                </button>
+            </div>
+        </div>
+        <div class="faq-input-area">
+            <input type="text" id="faqUserInput" class="faq-input" placeholder="Pregúntame algo sobre DUbot..." onkeypress="handleFaqKey(event)">
+            <button class="faq-send-btn" onclick="submitFaqQuestion()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1876,6 +2056,125 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>`,
             }).catch(() => {
                 showToast(lastPairingCode);
             });
+        }
+
+        // ==========================================
+        // 🦉 ASISTENTE FAQ DE DUBOT (PREGUNTAS FRECUENTES)
+        // ==========================================
+        const faqKnowledge = {
+            vinculacion: `📌 *¿Cómo vincular tu Sub-bot en vivo?*
+1. En la parte superior de esta página, elige *Por Código* o *Por Código QR*.
+2. Escribe tu número con código de país (ej: \`56985529966\`).
+3. Si quieres, elige un prefijo (ej: \`!\` o \`b.\`).
+4. Haz clic en **"Vincular Sub-bot Ahora"**.
+5. Recibirás tu código de 8 dígitos aquí mismo en la pantalla.
+6. En tu WhatsApp ve a: *Ajustes > Dispositivos vinculados > Vincular con número* e ingresa el código. ¡Listo!`,
+
+            contar: `🔢 *Minijuego .contar (v2.2.0)*
+• Se juega en grupos: los miembros van contando 1, 2, 3... en orden.
+• ❌ Si alguien repite turno o dice un número equivocado, se consume una vida o se reinicia la cuenta al 1.
+• 🎉 Al llegar a cada centena (100, 200, 300...), el bot reacciona con confeti, da +1 vida garantizada y abre una votación democrática de 30 segundos (S/N) para ganar otra vida extra.
+• 👑 Los admins pueden usar \`.contar set <número>\` para fijar la cuenta.`,
+
+            video: `🎬 *Ver y descargar videos de YouTube (.video / .ytvideo)*
+• Escribe: \`.video <nombre o link>\` (ej: \`.video phonk edit\`).
+• ⏱️ **Límites:** Hasta **30 minutos** para usuarios normales y hasta **10 horas** para administradores del bot.
+• Si pesa hasta ~70MB se reproduce directamente en el chat de WhatsApp con controles táctiles; si es más largo se envía como archivo de video.`,
+
+            comandos: `⚡ *Comandos más populares:*
+• \`.menu\` / \`.help\` — Catálogo completo con más de 190 comandos.
+• \`.bal\` / \`.work\` / \`.daily\` / \`.rob\` — Economía, trabajos y robos.
+• \`.balatro\` — Juego Roguelike de póker en arte ASCII.
+• \`.rollchar\` — Gacha de personajes y colección exclusiva.
+• \`.play\` — Descargar música MP3 (hasta 30m para admins).
+• \`.video\` — Ver videos de YouTube en chat.`,
+
+            admin: `👑 *Herramientas exclusivas para Admins:*
+• \`.disablecmd <cmd>\` / \`.enablecmd <cmd>\` — Deshabilitar o rehabilitar cualquier comando en vivo.
+• \`.disabledcmds\` — Lista de comandos bloqueados.
+• \`.contar set <n>\` — Ajustar número del minijuego de contar.
+• \`.banuser\` / \`.unbanuser\` — Banear o desbanear usuarios del bot.
+• \`.event luck|work 30m\` — Iniciar eventos globales o en el grupo.`
+        };
+
+        function toggleFaqModal() {
+            const modal = document.getElementById('faqModal');
+            if (!modal) return;
+            const isOpen = modal.classList.toggle('active');
+            if (isOpen) {
+                setTimeout(() => {
+                    document.getElementById('faqUserInput')?.focus();
+                }, 200);
+            }
+        }
+
+        function appendFaqMsg(sender, text) {
+            const container = document.getElementById('faqMessages');
+            if (!container) return;
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `faq-chat-msg ${sender === 'user' ? 'faq-msg-user' : 'faq-msg-bot'}`;
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function askFaq(topicKey) {
+            const answer = faqKnowledge[topicKey];
+            if (!answer) return;
+            const titles = {
+                vinculacion: '¿Cómo vinculo mi Sub-bot?',
+                contar: '¿Cómo funciona el juego .contar?',
+                video: '¿Cómo ver videos con .video?',
+                comandos: '¿Cuáles son los comandos principales?',
+                admin: '¿Qué funciones tienen los admins?'
+            };
+            appendFaqMsg('user', titles[topicKey] || topicKey);
+            setTimeout(() => {
+                appendFaqMsg('bot', answer);
+            }, 300);
+        }
+
+        function submitFaqQuestion() {
+            const input = document.getElementById('faqUserInput');
+            const q = input.value.trim();
+            if (!q) return;
+
+            appendFaqMsg('user', q);
+            input.value = '';
+
+            const lower = q.toLowerCase();
+            let botReply = '';
+
+            if (lower.includes('vincular') || lower.includes('subbot') || lower.includes('jadibot') || lower.includes('codigo') || lower.includes('qr')) {
+                botReply = faqKnowledge.vinculacion;
+            } else if (lower.includes('contar') || lower.includes('vida') || lower.includes('juego') || lower.includes('minijuego')) {
+                botReply = faqKnowledge.contar;
+            } else if (lower.includes('video') || lower.includes('youtube') || lower.includes('ver') || lower.includes('ytvideo')) {
+                botReply = faqKnowledge.video;
+            } else if (lower.includes('admin') || lower.includes('dueno') || lower.includes('disablecmd') || lower.includes('bloquear')) {
+                botReply = faqKnowledge.admin;
+            } else if (lower.includes('musica') || lower.includes('play') || lower.includes('mp3') || lower.includes('cancion')) {
+                botReply = `🎵 *Descarga de música con .play:*
+Usa \`.play <canción o link>\` para recibir el archivo de audio MP3 en WhatsApp. Los administradores tienen un pase especial de hasta 30 minutos.`;
+            } else if (lower.includes('casino') || lower.includes('apuesta') || lower.includes('balatro') || lower.includes('blackjack')) {
+                botReply = `🎰 *Casino y Minijuegos:*
+• \`.balatro\` — Póker roguelike con cartas Joker y Ante Blinds.
+• \`.blackjack\` (\`.bj\`) — Juega 21 contra el bot.
+• \`.cf\` — Cara o cruz por dinero.
+• \`.slots\` — Tragamonedas con premios mayores.`;
+            } else {
+                botReply = `🦉 Entendido. Puedes revisar la lista de comandos arriba usando el buscador de la página, o si necesitas soporte directo con el desarrollador, contáctalo al WhatsApp: **+56 9 8552 9966** (@doodle duo).`;
+            }
+
+            setTimeout(() => {
+                appendFaqMsg('bot', botReply);
+            }, 350);
+        }
+
+        function handleFaqKey(e) {
+            if (e.key === 'Enter') {
+                submitFaqQuestion();
+            }
         }
     </script>
 </body>
