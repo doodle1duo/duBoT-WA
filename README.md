@@ -9,7 +9,7 @@
 <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-v18+-68a063?style=for-the-badge&logo=node.js&logoColor=white" alt="NodeJS"/></a>
 <a href="https://github.com/WhiskeySockets/Baileys"><img src="https://img.shields.io/badge/Baileys-@whiskeysockets-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Baileys"/></a>
 <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/Google_Gemini-IA_Core-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Gemini"/></a>
-<a href="https://github.com/doodle1duo/duBoT-WA-bot"><img src="https://img.shields.io/badge/Version-2.1.0-orange?style=for-the-badge" alt="Version"/></a>
+<a href="https://github.com/doodle1duo/duBoT-WA-bot"><img src="https://img.shields.io/badge/Version-2.2.0-orange?style=for-the-badge" alt="Version"/></a>
 
 <a href="https://github.com/doodle1duo/duBoT-WA-bot"><img src="https://img.shields.io/badge/Platform-Termux_|_Linux_|_Windows-blueviolet?style=for-the-badge" alt="Platform"/></a>
 
@@ -47,7 +47,21 @@
 
 ## 🌟 Características Destacadas
 
-### 🎴 1. Gacha Rollchar de Halloween & Duolingo Exclusivos por Pity (v2.1.0)
+### 🔢 1. Minijuego Cooperativo de Contar en Grupo & Pase Admin de Audio (v2.2.0)
+* **🎮 Minijuego de Contar en Grupo (`.contar activar` / `.contar parar` / `.contar estado`):**
+  * Diseñado para dinámicas grupales donde los miembros deben contar progresivamente (`1, 2, 3...`).
+  * Reacción automática con `✅` en cada acierto.
+  * Regla anti-monopolio: un usuario no puede decir dos números consecutivos sin que otro participe.
+  * Hito de centenas (`100, 200, 300...`): reacción festiva con confeti `🎉`, otorgamiento automático e incondicional de **1 vida garantizada** y apertura de votación de 30 segundos (`S`/`N`) por una vida extra.
+  * Vidas de escudo `❤️`: si el grupo falla un número teniendo vidas, se consume una vida protegiendo la racha alcanzada.
+  * Control total de Administrador (`.contar set <número>`): permite corregir o forzar la cuenta al valor deseado.
+* **🎵 Pase Admin para Descargas de Audio (`.play` / `.ytmp3`):**
+  * Los administradores del bot disponen de un límite ampliado de hasta **30 minutos** para descarga de música y pistas largas (frente a los 10 minutos de usuarios convencionales).
+* **🧪 Suite de Testers QA Reforzada:**
+  * Detección mejorada de usuarios en `.addtester` y `.removetester` mediante mención, mensaje citado o número limpio.
+  * Acceso administrativo unificado a todas las herramientas técnicas de auditoría (`.tester`, `.testerdaily`, `.testerdiag`, `.testersim`, `.betamode`, `.obs`).
+
+### 🎴 2. Gacha Rollchar de Halloween & Duolingo Exclusivos por Pity (v2.1.0)
 * **🎃 Categoría Especial 8★ Exclusiva (`.rollchar` / `.rc`):** 5 personajes de Halloween de Duolingo con arte e ilustraciones vectoriales de alta resolución:
   * 🎃 **Duolingo Calabaza Maldita:** Poseído por la llama eterna de Jack-o'-lantern.
   * 🧛 **Conde Duolingo Vampiro:** Se alimenta de las gemas de quienes rompen su racha.
@@ -60,17 +74,33 @@
 
 ### 🎃 2. Calabaza Coleccionable de la Tienda & Tasación de Mercado (v2.1.0)
 * **🛒 Adquisición en `.shop` (`.comprar calabaza`):** Objeto puramente coleccionable y trofeo de exhibición (no consumible, precio $2,500).
+* **🌸 Calabaza Rosa Mítica (0.5% de Probabilidad):** Al comprar en `.shop`, existe una probabilidad secreta del 0.5% (1 entre 200) de obtener una **Calabaza Rosa Mítica Brillante**. Multiplica el valor de tasación del mercado por **x20**, otorga el badge oficial `🌸` y desbloquea el logro exclusivo `calabaza_rosa` ("Milagro Rosa", +$25,000, 5000 XP y 150 créditos).
+* **💎 Serial de Culto #67 (Multiplicador x15):** La calabaza acuñada con el número de serie **#67** posee una prima de coleccionismo legendaria que multiplica su valor base por **x15**, con felicitación especial y badge de diamante.
 * **🏷️ Número de Serie Único:** Cada calabaza recibe un número de serie secuencial e irrepetible (`#1`, `#2`, `#3`...). A menor número de serie, mayor es su valor base y exclusividad en el mercado (hasta x10 para la `#1`).
 * **🔒 Primer Dueño Sellado:** En el momento de la compra, el primer comprador queda sellado de forma indeleble y permanente (`originalOwner`). Si el primer dueño fue un administrador del bot (`+150%`) o una persona famosa/top de riqueza (`+75%`), la pieza adquiere una prima de valor histórica que se mantiene para siempre aunque se regale.
-* **✍️ Firmas y Autógrafos (`.firmarcalabaza <serial> <mensaje>`):** Cualquier usuario puede dejar una dedicatoria o autógrafo en la calabaza.
-* **📉 Regla de Intercambio en Números Bajos:** Si una calabaza de número de serie bajo (`#1` a `#25`) recibe firmas de administradores o personas famosas, **su valor de intercambio disminuye** debido a que los autógrafos rayan y alteran el estado prístino inmaculado de la pieza de colección. En piezas de series comunes, las firmas de celebridades incrementan su valor comercial.
+* **✍️ Firmas y Autógrafos (`.firmarcalabaza <serial> <mensaje>`):** Cualquier usuario puede dejar una dedicatoria o autógrafo en la calabaza. Las firmas nunca la devalúan: aportan valor y prestigio acumulativo (+30% por firmas de administradores o personas famosas y +10% por firmas de amigos o miembros).
 * **📜 Comandos de Colección:**
   * `.miscalabazas` / `.calabazas`: Muestra el catálogo de calabazas del jugador con tasación en tiempo real.
   * `.calabaza info <serial>`: Muestra el Certificado Oficial de Autenticidad, poseedor actual, primer dueño sellado, firmas y desglose.
   * `.tasarcalabaza <serial>`: Tasación analítica de mercado con detalle de factores y deducciones.
+  * `.topcalabazas`: Ranking con el Top 10 de calabazas más valiosas del servidor con sus poseedores y tasación.
   * `.regalarcalabaza @usuario <serial>`: Transfiere la posesión a otro usuario conservando el sello del primer dueño intacto.
 
-### 🏆 3. Gran Expansión de Logros & Sistema Silencioso Anti-Spam (v2.1.0)
+### 📈 3. Bolsa de Valores, Criptomonedas & Tablero en Vivo (v2.1.0)
+* **⚡ Actualización Segundo a Segundo:** Los precios de las acciones y criptomonedas fluctúan dinámicamente cada segundo en tiempo real en base a modelos de volatilidad estocástica.
+* **📊 Tablero en Vivo (`.tablero` / `.tableromercado`):** Despliega un panel interactivo que **se edita en tiempo real segundo a segundo** en WhatsApp con minigráficos sparkline (`[ ▂▃▅▆█]`), cotizaciones y variación porcentual durante 30 segundos.
+* **🎯 Tablero Individual por Activo (`.tablero <símbolo>`):** Pon el símbolo después del comando (ej: `.tablero BTC`, `.tablero DUO`, `.tablero TSLA`, `.tablero SOL`) para abrir un monitor exclusivo con gráfico de velas/ticks, máximos y mínimos de sesión, y precios recientes.
+* **🏛️ Mercado Financiero General (`.mercado` / `.crypto` / `.stocks`):**
+  * 🏢 **Acciones (Stocks):** `DUO` (Duolingo Inc.), `AAPL` (Apple), `TSLA` (Tesla), `GOOG` (Google), `PATA` (Patapon Corp), `NVDA` (Nvidia IA).
+  * 🪙 **Criptomonedas (Crypto):** `BTC` (Bitcoin), `ETH` (Ethereum), `SOL` (Solana), `DOGE` (Dogecoin), `DUOC` (DuoCoin Gold), `BNB` (Binance Coin).
+* **💰 Compra e Inversión Flexible (`.comprar <ticker> <cant>` / `.invertir <ticker> <monto>`):**
+  * Invierte por número de acciones/tokens: `.comprar DUO 2`, `.comprar BTC 0.05`.
+  * O invierte directamente un monto en efectivo: `.invertir BTC 1000` o `.invertir TSLA 500`.
+* **📉 Venta y Toma de Ganancias (`.vender <ticker> <cant | all>`):** Vende tus posiciones al precio actual del mercado, calculando tu Ganancia/Pérdida (PnL en $ y %) y acreditando los fondos de inmediato a tu balance.
+* **💼 Cartera Personal (`.cartera` / `.portafolio`):** Monitorea tu patrimonio invertido, precio promedio de compra, valor actual en vivo y rendimiento acumulado.
+* **🏆 Ranking de Wall Street (`.topinversores` / `.toptraders`):** Descubre a los 10 mayores magnates de inversiones del bot.
+
+### 🏆 4. Gran Expansión de Logros & Sistema Silencioso Anti-Spam (v2.1.0)
 * **🔇 Notificaciones Silenciosas:** Las recompensas de los logros (dinero, XP y créditos) se acreditan automáticamente en segundo plano sin interrumpir ni spamear mensajes emergentes durante el juego o actividades como `.work`, `.minar` o el casino.
 * **📋 Resumen de Novedades en `.logros`:** Al consultar `.logros`, el bot muestra un banner destacado con los logros desbloqueados recientemente y luego limpia la cola pendiente.
 * **⭐ 25 Logros Totales:** Incluye hitos de calabaza (`calabaza_coleccion`, `calabaza_prestigio`, `calabaza_firmada`), Halloween Gacha (`duo_halloween`), economía multimillonaria, jackpot de casino, robos al banco, mascotas míticas y ajedrez.
@@ -79,6 +109,24 @@
 * **⚖️ Sanción Centralizada de Administrador:** Permite a los administradores del bot revocar permanentemente el acceso a cualquier usuario infractor (`.banuser @user [motivo]`, `.ban`, `.botban`, `.bloquear`).
 * **🛡️ Protección:** El bot no puede ser baneado a sí mismo ni se puede banear a administradores del bot.
 * **🔓 Desbaneo Oficial:** `.unbanuser @user` para restaurar el acceso.
+
+### 🤖 5. Gemini Plugin Studio — Entorno Agéntico con Chats & Subagentes (v2.2.0)
+* **💬 Chats Agénticos Independientes por Plugin (`.gemplugins chats` / `.gemplugins chat <nombre>`):** Cada plugin o idea de desarrollo posee su propio chat/hilo agéntico dedicado con memoria persistente en `plugin_chats.json`, código fuente cargado en memoria y contexto aislado, sin depender de grupos de WhatsApp.
+* **👥 Equipo de 5 Subagentes Especializados:**
+  * 🤖 **Coordinador Agéntico (`@coordinador`):** Orquesta el flujo de trabajo y traduce requerimientos del usuario.
+  * 💻 **Programador Coder (`@coder`):** Desarrolla y refactoriza código ESM limpio y modular para Node.js v18+.
+  * 🧠 **Arquitecto de Software (`@arquitecto`):** Diseña estructuras de bases de datos (`user.bal`, `ctx.db`), permisos y comandos.
+  * 🧪 **Auditor & Tester (`@tester`):** Valida la sintaxis en tiempo real, simula casos extremos y auto-repara excepciones antes del guardado.
+  * 🎨 **Diseñador Visual (`@diseñador`):** Da estilo premium a los mensajes con negritas, emojis y presentación de WhatsApp.
+* **🔄 Migración Automática (`.gemplugins migrar`):** Sincroniza al instante todos los plugins instalados en la carpeta `plugins/` a sus respectivos chats agénticos con su código fuente listo para ser extendido o depurado.
+* **⚡ Hot-Reload & Sandbox Test VM:** Compilación en caliente sin reiniciar el bot; para miembros, aislamiento en Test VM privado (`.gemplugins test`) con sistema de envío y tokens de aprobación para administradores (`.gemplugins submit`).
+* **📋 Comandos Agénticos:**
+  * `.gemplugins chats`: Lista todos los chats de plugins y su estado.
+  * `.gemplugins chat [nombre/id]`: Abre y conmuta al chat de un plugin específico.
+  * `.gemplugins newchat [tema]`: Crea un nuevo chat agéntico limpio.
+  * `.gemplugins subagente [rol]`: Cambia el subagente activo o consulta el catálogo con `.gemplugins subagentes`.
+  * `.gemplugins migrar`: Migra todos los plugins a sus chats dedicados.
+  * `.gemplugins fix [plugin] [cambios]`: Auto-repara o modifica cualquier plugin existente con IA.
 
 ### ⏳ 5. Super Admin Abuse con Animaciones en Tiempo Real (v2.0.0)
 * **🎬 Animaciones Interactivas en Vivo (`.anim [tipo] [tiempo] [texto]`):** Sistema de animación que actualiza y edita en vivo el mensaje en WhatsApp (intervalo seguro de 1.5s - 2.5s) con duración personalizada (`10s`, `30s`, `1m`, `2m30s`, etc.):
