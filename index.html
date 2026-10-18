@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUbot — El Mejor Bot para WhatsApp</title>
-    <meta name="description" content="Vincula tu Subbot DUbot por código o QR (.subbot code / .subbot qr). Economía, Jadibots, Casino, IA Gemini, Descargas y más. Contacta a Chile Pesos (+56985529966).">
+    <title>DUbot v2.2.0 — El Mejor Bot para WhatsApp</title>
+    <meta name="description" content="Sitio oficial de DUbot v2.2.0. Conéctate con .subbot code o .subbot qr. Minijuego .contar grupal, Pase Admin .play 30m, Suite Testers QA, .disablecmd, economía, Jadibots, Casino, Balatro y Gemini AI.">
+    <meta name="theme-color" content="#25D366">
     
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="DUbot — Bot Multifuncional de WhatsApp">
-    <meta property="og:description" content="Lleva tus grupos al siguiente nivel con economía, juegos, IA y sub-bots. ¡Consíguelo ahora!">
+    <meta property="og:title" content="DUbot v2.2.0 — Bot Multifuncional de WhatsApp">
+    <meta property="og:description" content="Minijuego .contar, Pase Admin de música 30m, control total de comandos, Jadibots y economía en WhatsApp.">
+    <meta property="og:image" content="./dubot_v220_banner.jpg">
     
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --bg-dark: #090d16;
-            --bg-card: rgba(18, 26, 44, 0.75);
-            --bg-card-hover: rgba(28, 40, 68, 0.9);
+            --bg-dark: #070a10;
+            --bg-card: rgba(13, 20, 34, 0.75);
+            --bg-card-hover: rgba(19, 30, 52, 0.92);
             --primary: #25D366;
             --primary-glow: rgba(37, 211, 102, 0.35);
             --secondary: #00e5ff;
             --secondary-glow: rgba(0, 229, 255, 0.35);
-            --accent: #ff007f;
+            --accent: #a855f7;
+            --warning: #ffb800;
             --text-main: #f0f4fc;
             --text-muted: #8ea0be;
             --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(37, 211, 102, 0.4);
+            --border-hover: rgba(37, 211, 102, 0.45);
             --gradient: linear-gradient(135deg, #25D366 0%, #00e5ff 100%);
+            --gradient-accent: linear-gradient(135deg, #a855f7 0%, #00e5ff 100%);
         }
 
         * {
@@ -49,7 +53,7 @@
             line-height: 1.6;
         }
 
-        /* Background glow */
+        /* Ambient Glow Backgrounds */
         .bg-glow {
             position: fixed;
             width: 550px;
@@ -62,7 +66,7 @@
         }
         .glow-1 { top: -100px; left: -100px; background: var(--primary); }
         .glow-2 { bottom: -150px; right: -100px; background: var(--secondary); }
-        .glow-3 { top: 40%; left: 50%; transform: translate(-50%, -50%); background: var(--accent); opacity: 0.08; }
+        .glow-3 { top: 45%; left: 50%; transform: translate(-50%, -50%); background: var(--accent); opacity: 0.08; }
 
         /* Navbar */
         nav {
@@ -70,14 +74,15 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.2rem 8%;
+            padding: 1.1rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(20px);
-            background: rgba(9, 13, 22, 0.7);
+            background: rgba(7, 10, 16, 0.85);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -91,16 +96,28 @@
         }
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            color: #000;
-            box-shadow: 0 0 20px var(--primary-glow);
+            font-size: 1.4rem;
+            color: #041008;
+            box-shadow: 0 0 22px var(--primary-glow);
+        }
+
+        .logo-version-badge {
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(37, 211, 102, 0.15);
+            border: 1px solid rgba(37, 211, 102, 0.35);
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-left: 4px;
         }
 
         .nav-links {
@@ -119,7 +136,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--text-main);
+            color: var(--primary);
         }
 
         .btn-nav {
@@ -141,10 +158,20 @@
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
 
+        /* Mobile Hamburger */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            padding: 9rem 8% 5rem;
+            padding: 8.5rem 8% 4.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -152,16 +179,16 @@
             position: relative;
         }
 
-        .badge {
+        .release-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 0.45rem 1.2rem;
+            gap: 10px;
+            padding: 0.5rem 1.3rem;
             border-radius: 50px;
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.3);
+            background: rgba(37, 211, 102, 0.12);
+            border: 1px solid rgba(37, 211, 102, 0.4);
             color: var(--primary);
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -169,17 +196,26 @@
             animation: pulseGlow 3s infinite;
         }
 
+        .release-badge .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            display: inline-block;
+        }
+
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(37, 211, 102, 0.1); }
-            50% { box-shadow: 0 0 25px rgba(37, 211, 102, 0.3); }
+            0%, 100% { box-shadow: 0 0 12px rgba(37, 211, 102, 0.15); }
+            50% { box-shadow: 0 0 28px rgba(37, 211, 102, 0.4); }
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4.6rem);
             font-weight: 900;
             line-height: 1.15;
             margin-bottom: 1.5rem;
-            max-width: 900px;
+            max-width: 950px;
         }
 
         .gradient-text {
@@ -189,46 +225,125 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.18rem;
             color: var(--text-muted);
-            max-width: 650px;
-            margin-bottom: 2.5rem;
+            max-width: 720px;
+            margin-bottom: 2.2rem;
             font-weight: 400;
+        }
+
+        /* Banner Showcase */
+        .banner-showcase {
+            max-width: 850px;
+            width: 100%;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(37, 211, 102, 0.35);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(37, 211, 102, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .banner-showcase:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(37, 211, 102, 0.35);
+        }
+
+        .banner-showcase img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .banner-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(5, 9, 15, 0.95) 100%);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            color: #d1dcfa;
+        }
+
+        /* Subbot Hero Card */
+        .subbot-hero-card {
+            background: rgba(13, 20, 34, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+            max-width: 780px;
+            width: 100%;
+        }
+
+        .subbot-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .hero-cta-group {
             display: flex;
-            gap: 1.2rem;
+            gap: 1.1rem;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 3.5rem;
         }
 
-        .btn-main-cta {
-            padding: 1.1rem 2.5rem;
-            font-size: 1.15rem;
-            font-weight: 800;
+        .btn-subbot-code {
+            padding: 1rem 2rem;
             border-radius: 50px;
-            background: #25D366;
-            color: #05140b;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #ffffff;
+            font-weight: 800;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .btn-main-cta:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
-            background: #2ee672;
+        .btn-subbot-code:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.55);
+            color: #fff;
+        }
+
+        .btn-subbot-qr {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #00f0ff 0%, #0077be 100%);
+            color: #05141f;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.35);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-subbot-qr:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.55);
             color: #000;
         }
 
         .btn-secondary-cta {
-            padding: 1.1rem 2rem;
-            font-size: 1.1rem;
+            padding: 1rem 1.8rem;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
@@ -243,49 +358,8 @@
 
         .btn-secondary-cta:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.25);
             transform: translateY(-2px);
-        }
-
-        
-        .subbot-hero-card {
-            background: rgba(18, 26, 38, 0.7);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
-            max-width: 750px;
-            width: 100%;
-        }
-
-        .subbot-card-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-subbot-code {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
-            color: #ffffff !important;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35) !important;
-        }
-
-        .btn-subbot-qr {
-            background: linear-gradient(135deg, #00f0ff 0%, #0077be 100%) !important;
-            color: #05141f !important;
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.35) !important;
-        }
-
-        .btn-subbot-qr:hover {
-            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.55) !important;
-            color: #000000 !important;
         }
 
         /* Stats Bar */
@@ -317,16 +391,16 @@
             margin: 0;
         }
 
-        /* Features Section */
+        /* Section Layout */
         .section {
-            padding: 6rem 8%;
+            padding: 5.5rem 8%;
             max-width: 1300px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
         }
 
         .section-title {
@@ -338,10 +412,69 @@
         .section-desc {
             color: var(--text-muted);
             font-size: 1.1rem;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
+        /* v2.2.0 Highlight Banner */
+        .v22-spotlight {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(0, 229, 255, 0.05) 50%, rgba(13, 20, 34, 0.8) 100%);
+            border: 1px solid rgba(37, 211, 102, 0.35);
+            border-radius: 24px;
+            padding: 2.2rem;
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight-card {
+            background: rgba(8, 14, 26, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .spotlight-card:hover {
+            border-color: rgba(37, 211, 102, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .spotlight-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0.8rem;
+        }
+
+        .spotlight-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(37, 211, 102, 0.15);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+
+        .spotlight-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .spotlight-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* Features Grid */
         .grid-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -363,33 +496,21 @@
             transform: translateY(-6px);
             background: var(--bg-card-hover);
             border-color: var(--border-hover);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
 
         .feature-icon {
             width: 58px;
             height: 58px;
             border-radius: 16px;
-            background: rgba(37, 211, 102, 0.1);
+            background: rgba(37, 211, 102, 0.12);
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(37, 211, 102, 0.2);
-        }
-
-        .feature-card:nth-child(2) .feature-icon {
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--secondary);
-            border-color: rgba(0, 229, 255, 0.2);
-        }
-
-        .feature-card:nth-child(3) .feature-icon {
-            background: rgba(255, 0, 127, 0.1);
-            color: var(--accent);
-            border-color: rgba(255, 0, 127, 0.2);
+            margin-bottom: 1.4rem;
+            border: 1px solid rgba(37, 211, 102, 0.25);
         }
 
         .feature-card h3 {
@@ -405,7 +526,7 @@
         }
 
         .feature-tags {
-            margin-top: 1.2rem;
+            margin-top: 1.3rem;
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
@@ -421,20 +542,27 @@
             border: 1px solid var(--border);
         }
 
+        .tag-accent {
+            background: rgba(37, 211, 102, 0.12);
+            border-color: rgba(37, 211, 102, 0.35);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         /* Interactive Terminal / Command Simulator */
         .terminal-container {
-            background: #0d121f;
+            background: #090e1a;
             border-radius: 20px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(37, 211, 102, 0.3);
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 211, 102, 0.12);
+            max-width: 920px;
             margin: 0 auto;
         }
 
         .terminal-header {
-            background: #151d30;
-            padding: 0.8rem 1.2rem;
+            background: #111a2d;
+            padding: 0.9rem 1.4rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -459,6 +587,37 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-tabs {
+            display: flex;
+            background: #0d1527;
+            border-bottom: 1px solid var(--border);
+            padding: 0 1rem;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .terminal-tab {
+            padding: 0.7rem 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .terminal-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 600;
         }
 
         .terminal-body {
@@ -466,7 +625,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.95rem;
             min-height: 280px;
-            background: #090e1a;
+            background: #070c16;
         }
 
         .cmd-line {
@@ -483,28 +642,142 @@
 
         .cmd-input {
             color: #fff;
+            font-weight: 500;
         }
 
         .cmd-output {
-            color: #8fa0c0;
+            color: #9ab0d4;
             margin-bottom: 1.5rem;
             padding-left: 1rem;
-            border-left: 2px solid rgba(0, 229, 255, 0.3);
+            border-left: 2px solid rgba(37, 211, 102, 0.4);
             white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        /* Interactive Command Search / Library */
+        .cmd-library {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            max-width: 920px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cmd-search-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cmd-search-input {
+            flex: 1;
+            background: rgba(7, 10, 16, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.85rem 1.2rem;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-family: 'JetBrains Mono', monospace;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .cmd-search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .cmd-chip-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .cmd-chip {
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cmd-chip.active, .cmd-chip:hover {
+            background: rgba(37, 211, 102, 0.15);
+            border-color: rgba(37, 211, 102, 0.4);
+            color: var(--primary);
+        }
+
+        .cmd-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .cmd-item {
+            background: rgba(9, 14, 25, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .cmd-item:hover {
+            border-color: rgba(37, 211, 102, 0.35);
+            background: rgba(14, 22, 38, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .cmd-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .cmd-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .cmd-badge {
+            font-size: 0.7rem;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-muted);
+        }
+
+        .cmd-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.45;
         }
 
         /* Creator Card */
         .creator-card {
             background: linear-gradient(135deg, rgba(18, 26, 44, 0.9) 0%, rgba(13, 20, 36, 0.9) 100%);
-            border: 1px solid rgba(37, 211, 102, 0.3);
+            border: 1px solid rgba(37, 211, 102, 0.35);
             border-radius: 28px;
             padding: 3rem;
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
             display: flex;
             gap: 2.5rem;
             align-items: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
@@ -519,7 +792,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 0 30px var(--primary-glow);
+            box-shadow: 0 0 35px var(--primary-glow);
         }
 
         .avatar-inner {
@@ -535,7 +808,7 @@
         }
 
         .creator-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.85rem;
             font-weight: 800;
             margin-bottom: 0.3rem;
         }
@@ -580,13 +853,13 @@
         /* Banner CTA */
         .cta-banner {
             text-align: center;
-            padding: 5rem 8%;
-            background: linear-gradient(180deg, transparent 0%, rgba(37, 211, 102, 0.06) 100%);
+            padding: 5.5rem 8%;
+            background: linear-gradient(180deg, transparent 0%, rgba(37, 211, 102, 0.08) 100%);
             border-top: 1px solid var(--border);
         }
 
         .cta-banner h2 {
-            font-size: 2.6rem;
+            font-size: 2.7rem;
             font-weight: 900;
             margin-bottom: 1rem;
         }
@@ -595,7 +868,7 @@
             color: var(--text-muted);
             font-size: 1.15rem;
             margin-bottom: 2.2rem;
-            max-width: 600px;
+            max-width: 620px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -632,14 +905,42 @@
             50% { transform: translateY(-8px); }
         }
 
+        /* Toast notification */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(13, 20, 34, 0.95);
+            border: 1px solid var(--primary);
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px var(--primary-glow);
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast-notify.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
         /* Footer */
         footer {
-            padding: 2.5rem 8%;
+            padding: 2.8rem 8%;
             text-align: center;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
-            font-size: 0.9rem;
-            background: rgba(9, 13, 22, 0.95);
+            font-size: 0.92rem;
+            background: rgba(7, 10, 16, 0.98);
         }
 
         footer a {
@@ -649,12 +950,30 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
+        @media (max-width: 860px) {
+            .nav-links {
+                position: fixed;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(7, 10, 16, 0.98);
+                flex-direction: column;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+                display: none;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
             .creator-card { flex-direction: column; text-align: center; }
             .creator-handle { justify-content: center; }
-            .hero { padding-top: 7rem; }
+            .hero { padding-top: 7.5rem; }
             .stats-bar { gap: 1.5rem; }
+            .cmd-search-bar { flex-direction: column; }
         }
     </style>
 </head>
@@ -672,54 +991,125 @@
                 <i class="fa-solid fa-robot"></i>
             </div>
             <span>DUbot</span>
+            <span class="logo-version-badge">v2.2.0</span>
         </a>
-        <ul class="nav-links">
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#v220">Novedades v2.2.0</a></li>
             <li><a href="#features">Funciones</a></li>
             <li><a href="#commands">Comandos</a></li>
             <li><a href="#colaboraciones">Colaboraciones</a></li>
             <li><a href="#creator">Creador</a></li>
         </ul>
+
         <div class="nav-subbot-dropdown">
             <a href="#subbot-selector" class="btn-nav">
-                <i class="fa-solid fa-robot"></i> .subbot (code/qr)
+                <i class="fa-solid fa-bolt"></i> .subbot (code/qr)
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="badge">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> Official WhatsApp Bot v2.1.0 (Halloween RC & Duolingo Exclusivos 🎃)
+        <div class="release-badge">
+            <span class="live-dot"></span> Official Release DUbot v2.2.0 — Live Now 🚀
         </div>
         <h1>
             Potencia tus grupos de WhatsApp con <span class="gradient-text">DUbot</span>
         </h1>
         <p>
-            El bot multifuncional definitivo con Gacha Rollchar de Halloween con Duolingo Exclusivos por Pity y Contador de Unidades en Serie, Super Admin Abuse y Animaciones en Tiempo Real (.anim), Gran Especial de Halloween 🎃, Juegos HTML interactivos estilo Canvas, Asalto al Banco Central, Mascotas coleccionables, Ajedrez con IA, Balatro Roguelike y Gemini AI.
+            El bot multifuncional definitivo con el nuevo <strong>Minijuego grupal .contar con vidas</strong>, <strong>Pase Admin .play de 30 minutos</strong>, <strong>Suite Testers QA renovada</strong>, control dinámico de comandos (<code>.disablecmd</code>), Gacha Rollchar de Halloween con Duolingo Exclusivos, Balatro Roguelike y Gemini AI.
         </p>
 
+        <!-- Official v2.2.0 Announcement Banner -->
+        <div class="banner-showcase">
+            <img src="./dubot_v220_banner.jpg" alt="DUbot v2.2.0 Official Release Banner" loading="lazy">
+            <div class="banner-caption">
+                <span><i class="fa-solid fa-certificate" style="color:var(--primary);"></i> Banner Oficial de Lanzamiento v2.2.0</span>
+                <span><i class="fa-brands fa-whatsapp"></i> +56 9 8552 9966</span>
+            </div>
+        </div>
+
+        <!-- Interactive Web Sub-bot Live Pairing Portal -->
         <div class="subbot-hero-card" id="subbot-selector">
             <div class="subbot-card-title">
-                <i class="fa-solid fa-plug-circle-check"></i> Elige tu método de vinculación:
+                <i class="fa-solid fa-bolt" style="color:var(--primary);"></i> <span>Vinculación de Sub-bot en Vivo (Desde la Web)</span>
+                <span class="tag tag-accent" style="margin-left:auto; font-size:0.75rem;"><i class="fa-solid fa-signal"></i> Portal Oficial</span>
             </div>
-            <div class="hero-cta-group">
-                <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-main-cta btn-subbot-code" target="_blank">
-                    <i class="fa-solid fa-key"></i>
-                    <div style="text-align:left;">
-                        <div style="font-size:0.75rem; opacity:0.85; font-weight:600;">MÉTODO RECOMENDADO</div>
-                        <div>.subbot code</div>
+            
+            <div style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1.4rem;">
+                ⚠️ <em>El comando manual por WhatsApp (.subbot / .jadibot) ha sido degradado.</em> Conecta tu Sub-bot directamente aquí ingresando tu número y recibiendo tu código o QR en pantalla.
+            </div>
+
+            <!-- Method Switcher -->
+            <div style="display:flex; gap:10px; justify-content:center; margin-bottom:1.4rem; flex-wrap:wrap;">
+                <button type="button" class="btn-subbot-code" id="btnMethodCode" onclick="setPairingMethod('code')" style="cursor:pointer; border:none; font-size:0.95rem; padding:0.7rem 1.6rem;">
+                    <i class="fa-solid fa-key"></i> Por Código (8 dígitos)
+                </button>
+                <button type="button" class="btn-secondary-cta" id="btnMethodQR" onclick="setPairingMethod('qr')" style="cursor:pointer; font-size:0.95rem; padding:0.7rem 1.6rem;">
+                    <i class="fa-solid fa-qrcode"></i> Por Código QR
+                </button>
+            </div>
+
+            <!-- Inputs Form -->
+            <div style="display:flex; gap:12px; max-width:620px; margin:0 auto 1.2rem; flex-wrap:wrap;">
+                <div style="flex:2; min-width:220px; text-align:left;">
+                    <label style="font-size:0.78rem; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:4px; display:block;">Número WhatsApp (con código de país):</label>
+                    <input type="tel" id="subbotPhoneInput" class="cmd-search-input" placeholder="Ej: 56985529966" style="width:100%; border-radius:10px;">
+                </div>
+                <div style="flex:1; min-width:140px; text-align:left;">
+                    <label style="font-size:0.78rem; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:4px; display:block;">Prefijo Propio:</label>
+                    <input type="text" id="subbotPrefixInput" class="cmd-search-input" placeholder="Ej: ! o b." maxlength="4" style="width:100%; border-radius:10px;">
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:12px; margin-bottom:1.2rem;">
+                <button type="button" id="btnStartPairing" onclick="startWebPairing()" class="btn-subbot-code" style="cursor:pointer; border:none; padding:0.9rem 2.2rem; font-size:1.05rem;">
+                    <i class="fa-solid fa-paper-plane"></i> Generar Acceso en Vivo
+                </button>
+            </div>
+
+            <!-- Result Box -->
+            <div id="pairingResultBox" style="display:none; background:rgba(6,11,20,0.85); border:1px solid rgba(37,211,102,0.4); border-radius:16px; padding:1.5rem; margin-top:1.2rem;">
+                <div id="pairingSpinner" style="display:none; text-align:center; padding:1rem; color:var(--text-muted);">
+                    <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:var(--primary); margin-bottom:0.8rem;"></i>
+                    <div id="spinnerText">Solicitando sesión a los servidores de WhatsApp...</div>
+                </div>
+
+                <div id="codeDisplayArea" style="display:none; text-align:center;">
+                    <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">CÓDIGO DE VINCULACIÓN:</div>
+                    <div id="pairingCodeValue" style="font-family:'JetBrains Mono', monospace; font-size:2.2rem; font-weight:900; letter-spacing:4px; color:var(--primary); margin-bottom:0.8rem; text-shadow:0 0 20px var(--primary-glow);">
+                        ---- ----
                     </div>
-                </a>
-                <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-main-cta btn-subbot-qr" target="_blank">
-                    <i class="fa-solid fa-qrcode"></i>
-                    <div style="text-align:left;">
-                        <div style="font-size:0.75rem; opacity:0.85; font-weight:600;">ESCANEAR PANTALLA</div>
-                        <div>.subbot qr</div>
+                    <div style="display:flex; justify-content:center; gap:10px; margin-bottom:1rem;">
+                        <button type="button" onclick="copyPairingCode()" class="btn-secondary-cta" style="padding:0.6rem 1.4rem; font-size:0.9rem; cursor:pointer;">
+                            <i class="fa-regular fa-copy"></i> Copiar Código
+                        </button>
                     </div>
-                </a>
-                <a href="#features" class="btn-secondary-cta">
-                    <i class="fa-solid fa-compass"></i> Ver Funciones
-                </a>
+                    <div style="font-size:0.88rem; color:#b0c4de;">
+                        📲 En tu WhatsApp: <strong>Ajustes &gt; Dispositivos vinculados &gt; Vincular con número de teléfono</strong> e ingresa este código.
+                    </div>
+                </div>
+
+                <div id="qrDisplayArea" style="display:none; text-align:center;">
+                    <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">ESCANEA ESTE CÓDIGO QR:</div>
+                    <div style="display:inline-block; padding:10px; background:#fff; border-radius:12px; margin-bottom:0.8rem; box-shadow:0 0 25px rgba(0,229,255,0.4);">
+                        <img id="pairingQRImg" src="" alt="Código QR de Vinculación" style="width:220px; height:220px; display:block;">
+                    </div>
+                    <div style="font-size:0.88rem; color:#b0c4de;">
+                        📷 Abre WhatsApp &gt; Dispositivos vinculados &gt; Vincular un dispositivo y apunta la cámara.
+                    </div>
+                </div>
+
+                <div id="connectedSuccessArea" style="display:none; text-align:center; padding:1rem;">
+                    <div style="font-size:2.5rem; margin-bottom:0.5rem;">🎉</div>
+                    <h3 style="color:var(--primary); font-size:1.4rem; margin-bottom:0.4rem;">¡Sub-bot Vinculado y Activo!</h3>
+                    <p style="color:var(--text-muted); font-size:0.95rem;">Tu Sub-bot ya está en línea y responderá a su prefijo configurado en tus grupos y chats.</p>
+                </div>
             </div>
         </div>
 
@@ -730,15 +1120,79 @@
             </div>
             <div class="stat-item">
                 <h3>24/7</h3>
-                <p>Actividad</p>
+                <p>Disponibilidad</p>
             </div>
             <div class="stat-item">
-                <h3>100%</h3>
-                <p>Personalizable</p>
+                <h3>30 min</h3>
+                <p>Pase Audio .play</p>
             </div>
             <div class="stat-item">
-                <h3>⚡ v2.1.0</h3>
+                <h3>⚡ v2.2.0</h3>
                 <p>Última Versión</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- v2.2.0 Special Spotlight Section -->
+    <section class="section" id="v220" style="padding-top: 2rem;">
+        <div class="section-header">
+            <div class="release-badge" style="margin-bottom: 0.8rem;">
+                <i class="fa-solid fa-star"></i> Changelog Oficial
+            </div>
+            <h2 class="section-title">Lo Nuevo en <span class="gradient-text">DUbot v2.2.0</span></h2>
+            <p class="section-desc">Diseñado para mayor interacción en grupos, herramientas avanzadas de moderación y auditoría técnica sin límites.</p>
+        </div>
+
+        <div class="v22-spotlight">
+            <div class="spotlight-card">
+                <div class="spotlight-header">
+                    <div class="spotlight-icon">
+                        <i class="fa-solid fa-arrow-down-1-9"></i>
+                    </div>
+                    <div class="spotlight-title">Minijuego Grupal .contar</div>
+                </div>
+                <p class="spotlight-desc">
+                    Dinámica cooperativa donde los miembros cuentan en secuencia (1, 2, 3...). Al llegar a cada centena (100, 200, 300) se activa confeti 🎉, +1 vida de reserva ❤️ garantizada y votación democrática rápida (S/N) para ganar una vida extra. Si fallan con vidas activas, la racha no se reinicia.
+                </p>
+                <div class="feature-tags">
+                    <span class="tag tag-accent">.contar activar</span>
+                    <span class="tag tag-accent">.contar set &lt;n&gt;</span>
+                    <span class="tag">Vidas ❤️</span>
+                </div>
+            </div>
+
+            <div class="spotlight-card">
+                <div class="spotlight-header">
+                    <div class="spotlight-icon" style="color:var(--secondary); background:rgba(0,229,255,0.15); border-color:rgba(0,229,255,0.3);">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div class="spotlight-title">Pase Admin de Audio (30m)</div>
+                </div>
+                <p class="spotlight-desc">
+                    Los administradores del bot cuentan con pase libre para descargar pistas de hasta 30 minutos de duración en <code>.play</code> y <code>.ytmp3</code> (el límite estándar para usuarios comunes es de 10 minutos).
+                </p>
+                <div class="feature-tags">
+                    <span class="tag tag-accent">.play</span>
+                    <span class="tag">30 Minutos</span>
+                    <span class="tag">Admin Bypass</span>
+                </div>
+            </div>
+
+            <div class="spotlight-card">
+                <div class="spotlight-header">
+                    <div class="spotlight-icon" style="color:var(--warning); background:rgba(255,184,0,0.15); border-color:rgba(255,184,0,0.3);">
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+                    <div class="spotlight-title">Control Total de Comandos</div>
+                </div>
+                <p class="spotlight-desc">
+                    Los administradores pueden deshabilitar temporalmente cualquier comando del bot (por ejemplo ante mantenimiento o abuso) con <code>.disablecmd &lt;comando&gt;</code> y rehabilitarlo al instante con <code>.enablecmd</code>, con persistencia garantizada.
+                </p>
+                <div class="feature-tags">
+                    <span class="tag tag-accent">.disablecmd</span>
+                    <span class="tag tag-accent">.enablecmd</span>
+                    <span class="tag">.disabledcmds</span>
+                </div>
             </div>
         </div>
     </section>
@@ -747,17 +1201,31 @@
     <section class="section" id="features">
         <div class="section-header">
             <h2 class="section-title">Todo lo que necesitas en un <span class="gradient-text">Solo Bot</span></h2>
-            <p class="section-desc">Diseñado desde cero con Baileys y Node.js para ofrecer la máxima velocidad, estabilidad y diversión en tus chats.</p>
+            <p class="section-desc">Diseñado desde cero con Baileys y Node.js para ofrecer máxima velocidad, estabilidad y entretenimiento en cualquier grupo.</p>
         </div>
 
         <div class="grid-features">
+            <!-- Feature: Counting Minigame -->
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(37, 211, 102, 0.15); color: #25D366; border-color: rgba(37, 211, 102, 0.35);">
+                    <i class="fa-solid fa-dice-d20"></i>
+                </div>
+                <h3>Minijuego .contar & Vidas (v2.2)</h3>
+                <p>Contador cooperativo en tiempo real. Respuestas correctas reciben check ✅ inmediato. El grupo acumula vidas para resistir errores, celebra cada centena con confeti 🎉 y los admins pueden fijar la cuenta con <code>.contar set</code>.</p>
+                <div class="feature-tags">
+                    <span class="tag tag-accent">.contar activar</span>
+                    <span class="tag">.contar estado</span>
+                    <span class="tag">.contar set</span>
+                </div>
+            </div>
+
             <!-- Feature: Halloween Gacha RC & Duolingo Exclusivos -->
             <div class="feature-card">
                 <div class="feature-icon" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">
                     <i class="fa-solid fa-gem"></i>
                 </div>
                 <h3>Halloween Gacha RC & Duolingo Pity (v2.1)</h3>
-                <p>Categoría especial 8★ [HALLOWEEN EXCLUSIVO] en .rollchar con 5 Duolingos (Calabaza, Vampiro, Brujo, Fantasma y Segador). Obtenibles exclusivamente por Pity cada 20 tiradas, con contador de unidades serial (#001, #002...) y existencias mundiales.</p>
+                <p>Categoría especial 8★ [HALLOWEEN EXCLUSIVO] en <code>.rollchar</code> con 5 Duolingos (Calabaza, Vampiro, Brujo, Fantasma y Segador). Obtenibles exclusivamente por Pity cada 20 tiradas, con número de unidad serial (#001, #002...) y existencias mundiales.</p>
                 <div class="feature-tags">
                     <span class="tag">.rollchar</span>
                     <span class="tag">.rc</span>
@@ -773,68 +1241,22 @@
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
                 <h3>Super Admin Abuse & Animaciones (v2.0)</h3>
-                <p>Animaciones interactivas en vivo editando mensajes en WhatsApp: Reloj de arena con arena cayendo, Bomba con mecha, Cofre con candados, Tragamonedas girando, Consola Matrix hacker, Despegue espacial y Lluvia interactiva donde los usuarios recogen dinero con .recoger.</p>
+                <p>Animaciones interactivas editando mensajes en WhatsApp: Reloj de arena, Bomba con mecha, Cofre con candados, Tragamonedas girando, Consola Matrix hacker y Lluvia de dinero interactiva donde los usuarios recogen monedas en vivo con <code>.recoger</code>.</p>
                 <div class="feature-tags">
                     <span class="tag">.anim reloj</span>
                     <span class="tag">.anim bomba</span>
-                    <span class="tag">.anim cofre</span>
                     <span class="tag">.anim lluvia</span>
                     <span class="tag">.recoger</span>
                 </div>
             </div>
 
-            <!-- Feature: Halloween & Noche de Brujas -->
+            <!-- Feature: Balatro Roguelike -->
             <div class="feature-card">
-                <div class="feature-icon" style="background: rgba(255, 117, 24, 0.15); color: #ff7518; border-color: rgba(255, 117, 24, 0.3);">
-                    <i class="fa-solid fa-ghost"></i>
-                </div>
-                <h3>Halloween & Noche de Brujas (v2.0)</h3>
-                <p>Set temporal exclusivo de Octubre: Truco o Trato (.dulceotruco), Tienda de la Bruja & Caldero Mágico (.caldero), Mansión Embrujada (.casadelterror), Cazafantasmas (.cazafantasmas), Tallado de Calabaza (.calabaza), Duelo de Hechizos (.hechizo) y Carrera Zombie (.carrerazombie).</p>
-                <div class="feature-tags">
-                    <span class="tag">.dulceotruco</span>
-                    <span class="tag">.caldero</span>
-                    <span class="tag">.casadelterror</span>
-                    <span class="tag">.cazafantasmas</span>
-                    <span class="tag">.event halloween</span>
-                </div>
-            </div>
-
-            <!-- Feature 0: Pets & VIP -->
-            <div class="feature-card">
-                <div class="feature-icon" style="background: rgba(255, 179, 0, 0.1); color: #ffb300; border-color: rgba(255, 179, 0, 0.2);">
-                    <i class="fa-solid fa-paw"></i>
-                </div>
-                <h3>Mascotas, VIP & Subastas (v1.5.0)</h3>
-                <p>Incuba huevos (.huevo), desbloquea a Duolingo Mítico con x100 monedas, expande hasta 6 slots de pets equipadas (.pet slots), disfruta del rework VIP (.vip) y comercia en la Casa de Subastas (.ah).</p>
-                <div class="feature-tags">
-                    <span class="tag">.huevo</span>
-                    <span class="tag">.pet slots</span>
-                    <span class="tag">.vip</span>
-                    <span class="tag">.ah</span>
-                </div>
-            </div>
-
-            <!-- Feature 1: Globalmsg & Events -->
-            <div class="feature-card">
-                <div class="feature-icon" style="background: rgba(0, 229, 255, 0.1); color: var(--secondary); border-color: rgba(0, 229, 255, 0.2);">
-                    <i class="fa-solid fa-bullhorn"></i>
-                </div>
-                <h3>Transmisión Global & Eventos (v1.4.0)</h3>
-                <p>Difusión masiva con etiqueta oculta a todos los grupos donde se ha usado el bot (.globalmsg) y eventos globales automáticos con duración en minutos u horas (.event luck 30m).</p>
-                <div class="feature-tags">
-                    <span class="tag">.globalmsg</span>
-                    <span class="tag">.event 30m</span>
-                    <span class="tag">.endevent</span>
-                </div>
-            </div>
-
-            <!-- Feature 2: Balatro Roguelike -->
-            <div class="feature-card">
-                <div class="feature-icon" style="background: rgba(255, 0, 127, 0.1); color: var(--accent); border-color: rgba(255, 0, 127, 0.2);">
+                <div class="feature-icon" style="background: rgba(255, 0, 127, 0.15); color: #ff007f; border-color: rgba(255, 0, 127, 0.3);">
                     <i class="fa-solid fa-spade"></i>
                 </div>
                 <h3>Balatro ASCII Roguelike Poker</h3>
-                <p>El aclamado juego de póker roguelike con cartas en arte ASCII para móviles. 30 Jokers pasivos, 9 Cartas de Planetas, 8 ANTES con Boss Blinds y Tienda interactiva.</p>
+                <p>El aclamado juego de póker roguelike con cartas en arte ASCII para móviles. 30 Jokers pasivos, 9 Cartas de Planetas, 8 ANTES con Boss Blinds y Tienda interactiva para personalizar tu baraja.</p>
                 <div class="feature-tags">
                     <span class="tag">.balatro</span>
                     <span class="tag">.bplay</span>
@@ -842,62 +1264,32 @@
                 </div>
             </div>
 
-            <!-- Feature 3: Jadibots with Custom Prefixes -->
+            <!-- Feature: Jadibots with Custom Prefixes -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fa-solid fa-code-branch"></i>
                 </div>
                 <h3>Jadibots con Prefijo Libre</h3>
-                <p>Convierte tu número en un sub-bot en segundos. Elige tu prefijo favorito (letras como b. o símbolos como !, #, $, /) y disfruta de ejecución directa sin trabas.</p>
+                <p>Convierte tu número en un sub-bot en segundos con <code>.subbot code</code> o <code>.subbot qr</code>. Elige tu prefijo favorito (letras como b. o símbolos como !, #, $, /) con aislamiento total.</p>
                 <div class="feature-tags">
-                    <span class="tag">.jadibot code !</span>
-                    <span class="tag">.subbots</span>
+                    <span class="tag">.subbot code</span>
+                    <span class="tag">.subbot qr</span>
                     <span class="tag">.setjadiprefix</span>
                 </div>
             </div>
 
-            <!-- Feature 4: Economy & Banking -->
+            <!-- Feature: Economy & Banking -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fa-solid fa-coins"></i>
                 </div>
                 <h3>Economía, Banco & Préstamos</h3>
-                <p>Sistema bancario con bóveda, intereses diarios, transferencias, trabajos, robos con cooldown y sistema de cárcel con multas y rescates.</p>
+                <p>Sistema bancario con bóveda, intereses diarios, transferencias, trabajos, robos con cooldown y sistema de cárcel con multas, fianzas y rescates.</p>
                 <div class="feature-tags">
                     <span class="tag">.work</span>
                     <span class="tag">.daily</span>
                     <span class="tag">.prestamo</span>
                     <span class="tag">.rob</span>
-                </div>
-            </div>
-
-            <!-- Feature 5: PvP & Group Management -->
-            <div class="feature-card">
-                <div class="feature-icon" style="background: rgba(255, 184, 0, 0.15); color: #ffb800; border-color: rgba(255, 184, 0, 0.3);">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <h3>Duelos PvP & Moderación Grupal</h3>
-                <p>Desafía a otros a combate por dinero (.duelo), invoca a todos los miembros (.tagall), envía avisos ocultos (.hidetag) y modera con expulsión (.kick).</p>
-                <div class="feature-tags">
-                    <span class="tag">.duelo</span>
-                    <span class="tag">.tagall</span>
-                    <span class="tag">.hidetag</span>
-                    <span class="tag">.kick</span>
-                </div>
-            </div>
-
-            <!-- Feature 6: AI, TTS & Multimedia -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-brain"></i>
-                </div>
-                <h3>IA Gemini, Voz TTS & Clima</h3>
-                <p>Inteligencia Artificial Gemini, conversión de texto a nota de voz (.tts), pronóstico del clima satelital (.clima), descargas de música (.play) y stickers.</p>
-                <div class="feature-tags">
-                    <span class="tag">.ai</span>
-                    <span class="tag">.tts</span>
-                    <span class="tag">.clima</span>
-                    <span class="tag">.sticker</span>
                 </div>
             </div>
         </div>
@@ -906,8 +1298,8 @@
     <!-- Terminal Command Demo -->
     <section class="section" id="commands">
         <div class="section-header">
-            <h2 class="section-title">Comandos <span class="gradient-text">Inteligentes</span></h2>
-            <p class="section-desc">Corrección automática de tipeo, sugerencias en vivo y respuestas al instante.</p>
+            <h2 class="section-title">Consola de Comandos <span class="gradient-text">DUbot v2.2.0</span></h2>
+            <p class="section-desc">Prueba interactivamente las respuestas del bot seleccionando diferentes escenarios a continuación.</p>
         </div>
 
         <div class="terminal-container">
@@ -917,45 +1309,69 @@
                     <div class="dot dot-yellow"></div>
                     <div class="dot dot-green"></div>
                 </div>
-                <div class="terminal-title">WhatsApp Session — DUbot Core v2.1.0</div>
+                <div class="terminal-title">
+                    <i class="fa-brands fa-whatsapp" style="color:var(--primary);"></i> WhatsApp Session — DUbot Core v2.2.0
+                </div>
             </div>
-            <div class="terminal-body">
+
+            <div class="terminal-tabs">
+                <button class="terminal-tab active" onclick="switchDemoTab('contar')">1. .contar (Nuevo)</button>
+                <button class="terminal-tab" onclick="switchDemoTab('play')">2. .play Pase Admin</button>
+                <button class="terminal-tab" onclick="switchDemoTab('disable')">3. .disablecmd</button>
+                <button class="terminal-tab" onclick="switchDemoTab('balatro')">4. .balatro Poker</button>
+                <button class="terminal-tab" onclick="switchDemoTab('subbot')">5. .subbot code</button>
+            </div>
+
+            <div class="terminal-body" id="terminal-screen">
                 <div class="cmd-line">
-                    <span class="cmd-prompt">Admin:</span>
-                    <span class="cmd-input">.event luck 30m</span>
+                    <span class="cmd-prompt">Grupo:</span>
+                    <span class="cmd-input">.contar activar</span>
                 </div>
-                <div class="cmd-output">🍀 *¡EVENTO GLOBAL INICIADO EN DUBOT!* 🌟
-🎯 *Evento:* Suerte x2
-📖 *Detalles:* Probabilidad doble en casino y minijuegos
-⏳ *Duración:* 30 minuto(s)
-📡 Notificado a todos los grupos con etiqueta oculta.</div>
+                <div class="cmd-output">🔢 *¡MINIJUEGO DE CONTAR ACTIVADO!* 🎮
+Reglas del juego:
+1️⃣ Cuenten en secuencia comenzando desde el 1.
+2️⃣ ¡No puedes contar dos veces seguidas!
+3️⃣ Cada 100 números hay celebración 🎉 y vidas extra.
+❤️ Vidas de reserva: *0*</div>
 
                 <div class="cmd-line">
-                    <span class="cmd-prompt">User:</span>
-                    <span class="cmd-input">.balatro</span>
+                    <span class="cmd-prompt">User1:</span>
+                    <span class="cmd-input">100</span>
                 </div>
-                <div class="cmd-output">🃏 *BALATRO POKER ROGUELIKE* 🃏
-┌───┐ ┌───┐ ┌───┐ ┌───┐
-│ A │ │ K │ │ Q │ │ J │
-│ ♥ │ │ ♥ │ │ ♥ │ │ ♥ │
-└───┘ └───┘ └───┘ └───┘
-🎯 Meta: 300 pts | 🃏 Jokers (1/5): Popcorn (+20 Mult)
-Usa: *.bplay 1 2 3 4* o *.bshop*</div>
+                <div class="cmd-output">🎉 *¡HITO DE CENTENA ALCANZADO (100)!* 🥳
+Reacción: 🎉
+❤️ *+1 VIDA GARANTIZADA* para el grupo (Total: 1 vida).
+🗳️ *¡VOTACIÓN DE VIDA EXTRA INICIADA (30s)!*
+¿Merece el grupo otra vida? Respondan *S* (Sí) o *N* (No).</div>
+            </div>
+        </div>
 
-                <div class="cmd-line">
-                    <span class="cmd-prompt">User:</span>
-                    <span class="cmd-input">.jadibot code !</span>
-                </div>
-                <div class="cmd-output">🤖 *CÓDIGO DE VINCULACIÓN GENERADO*
-📱 Número: +569XXXXXXXX
-🔤 Prefijo personalizado: *!* (ejemplo: !menu)
-🔢 Código: *8492-1204*
-💡 Ingresa el código en Dispositivos vinculados.</div>
+        <!-- Interactive Command Finder -->
+        <div class="cmd-library">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+                <h3 style="font-size:1.2rem; font-weight:700;"><i class="fa-solid fa-magnifying-glass" style="color:var(--primary);"></i> Buscador Rápido de Comandos</h3>
+                <span style="font-size:0.85rem; color:var(--text-muted);" id="cmd-count-badge">Mostrando todos</span>
+            </div>
+            
+            <div class="cmd-search-bar">
+                <input type="text" id="cmdSearchInput" class="cmd-search-input" placeholder="Escribe un comando o función (ej: contar, play, rob, gacha, anim)...">
+            </div>
+
+            <div class="cmd-chip-filter">
+                <button class="cmd-chip active" onclick="filterCmdCategory('all')">Todos</button>
+                <button class="cmd-chip" onclick="filterCmdCategory('v220')">🚀 v2.2.0 Nuevo</button>
+                <button class="cmd-chip" onclick="filterCmdCategory('juegos')">🎮 Minijuegos</button>
+                <button class="cmd-chip" onclick="filterCmdCategory('admin')">👑 Admin</button>
+                <button class="cmd-chip" onclick="filterCmdCategory('economia')">💰 Economía</button>
+                <button class="cmd-chip" onclick="filterCmdCategory('subbot')">🤖 Sub-bots</button>
+            </div>
+
+            <div class="cmd-results-grid" id="cmdResultsGrid">
+                <!-- Injected via JavaScript -->
             </div>
         </div>
     </section>
 
-    
     <!-- Paid Collaborations Section -->
     <section class="section" id="colaboraciones">
         <div class="section-header">
@@ -989,13 +1405,13 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon" style="background: rgba(142, 68, 173, 0.15); color: #9b59b6;">
+                <div class="feature-icon" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">
                     <i class="fa-solid fa-gem"></i>
                 </div>
                 <h3>Integración en Gacha & Economía</h3>
                 <p>Añade personajes, coleccionables o ítems temáticos exclusivos de tu proyecto en el gacha y tienda del bot para crear engagement con los usuarios.</p>
                 <div class="feature-tags">
-                    <span class="tag" style="border-color: rgba(155, 89, 182, 0.4); color: #9b59b6;">Gacha</span>
+                    <span class="tag" style="border-color: rgba(168, 85, 247, 0.4); color: #c084fc;">Gacha</span>
                     <span class="tag">Ítem Exclusivo</span>
                 </div>
             </div>
@@ -1014,7 +1430,7 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>
         </div>
 
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20me%20interesa%20una%20colaboraci%C3%B3n%20pagada%20con%20DUbot" class="btn-main-cta" style="font-size: 1.15rem; padding: 1rem 2.5rem;" target="_blank">
+            <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20me%20interesa%20una%20colaboraci%C3%B3n%20pagada%20con%20DUbot" class="btn-subbot-code" style="font-size: 1.15rem; padding: 1rem 2.5rem;" target="_blank">
                 <i class="fa-brands fa-whatsapp"></i> Cotizar Colaboración Pagada
             </a>
         </div>
@@ -1049,11 +1465,11 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Plataforma</div>
-                        <div class="spec-val">PC</div>
+                        <div class="spec-val">PC / Server</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Lenguaje</div>
-                        <div class="spec-val">Node.js</div>
+                        <div class="spec-val">Node.js (ESM)</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Librería</div>
@@ -1062,10 +1478,10 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>
                 </div>
 
                 <div style="margin-top: 1.8rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
-                    <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-main-cta btn-subbot-code" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
+                    <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-subbot-code" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
                         <i class="fa-solid fa-key"></i> .subbot code
                     </a>
-                    <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-main-cta btn-subbot-qr" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
+                    <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-subbot-qr" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
                         <i class="fa-solid fa-qrcode"></i> .subbot qr
                     </a>
                     <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20tengo%20una%20duda%20con%20DUbot" class="btn-secondary-cta" style="padding: 0.85rem 1.4rem; font-size: 0.95rem;" target="_blank">
@@ -1079,16 +1495,22 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>
     <!-- CTA Banner -->
     <section class="cta-banner">
         <h2>¿Listo para activar tu <span class="gradient-text">Sub-bot</span>?</h2>
-        <p>Elige tu método preferido (.subbot code o .subbot qr) para enviar el comando al bot y recibir tu acceso al instante.</p>
+        <p>Elige tu método preferido (.subbot code o .subbot qr) para vincular tu WhatsApp al instante y disfrutar de la v2.2.0.</p>
         <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-main-cta btn-subbot-code" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;" target="_blank">
+            <a href="https://wa.me/56985529966?text=.subbot%20code" class="btn-subbot-code" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;" target="_blank">
                 <i class="fa-solid fa-key"></i> .subbot code (8 dígitos)
             </a>
-            <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-main-cta btn-subbot-qr" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;" target="_blank">
+            <a href="https://wa.me/56985529966?text=.subbot%20qr" class="btn-subbot-qr" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;" target="_blank">
                 <i class="fa-solid fa-qrcode"></i> .subbot qr (Código QR)
             </a>
         </div>
     </section>
+
+    <!-- Toast Notification -->
+    <div class="toast-notify" id="toastNotify">
+        <i class="fa-solid fa-circle-check" style="color:var(--primary);"></i>
+        <span id="toastMsg">Comando copiado al portapapeles</span>
+    </div>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/56985529966?text=Hola%20Chile%20Pesos%2C%20quiero%20conseguir%20el%20bot%20DUbot%20para%20mi%20WhatsApp" class="floating-wa" target="_blank" title="Contactar por WhatsApp (+56985529966)">
@@ -1097,8 +1519,305 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 <strong>DUbot</strong> — Desarrollado por <a href="https://wa.me/56985529966" target="_blank">Chile Pesos (@doodle duo)</a> • <a href="https://github.com/doodle1duo/duBoT-WA-bot" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a></p>
+        <p>© 2026 <strong>DUbot v2.2.0</strong> — Desarrollado por <a href="https://wa.me/56985529966" target="_blank">Chile Pesos (@doodle duo)</a> • <a href="https://github.com/doodle1duo/duBoT-WA-bot" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a></p>
     </footer>
 
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Toggle Menu
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Terminal Demo Switcher
+        const demoData = {
+            contar: `
+<div class="cmd-line"><span class="cmd-prompt">Grupo:</span><span class="cmd-input">.contar activar</span></div>
+<div class="cmd-output">🔢 *¡MINIJUEGO DE CONTAR ACTIVADO!* 🎮
+Reglas del juego:
+1️⃣ Cuenten en secuencia comenzando desde el 1.
+2️⃣ ¡No puedes contar dos veces seguidas!
+3️⃣ Cada 100 números hay celebración 🎉 y vidas extra.
+❤️ Vidas de reserva: *0*</div>
+<div class="cmd-line"><span class="cmd-prompt">User1:</span><span class="cmd-input">100</span></div>
+<div class="cmd-output">🎉 *¡HITO DE CENTENA ALCANZADO (100)!* 🥳
+Reacción: 🎉
+❤️ *+1 VIDA GARANTIZADA* para el grupo (Total: 1 vida).
+🗳️ *¡VOTACIÓN DE VIDA EXTRA INICIADA (30s)!*
+¿Merece el grupo otra vida? Respondan *S* (Sí) o *N* (No).</div>`,
+
+            play: `
+<div class="cmd-line"><span class="cmd-prompt">Admin:</span><span class="cmd-input">.play synthwave mix 25 min</span></div>
+<div class="cmd-output">🎵 *DESCARGANDO AUDIO DE YOUTUBE*
+👑 *[PASE ADMIN ACTIVO]* — Duración detectada: 25:14 min
+✅ Límite ampliado a 30 minutos para administradores.
+⏳ Procesando y convirtiendo a formato WhatsApp MP3...</div>
+<div class="cmd-line"><span class="cmd-prompt">Bot:</span><span class="cmd-input">[Audio Enviado Exitosamente • 24.8 MB]</span></div>`,
+
+            disable: `
+<div class="cmd-line"><span class="cmd-prompt">Admin:</span><span class="cmd-input">.disablecmd rob</span></div>
+<div class="cmd-output">🚫 *Comando deshabilitado:* *.rob*
+_Los usuarios ya no podrán usarlo hasta que lo rehabilites con .enablecmd rob_</div>
+<div class="cmd-line"><span class="cmd-prompt">User:</span><span class="cmd-input">.rob @amigo</span></div>
+<div class="cmd-output">🚫 El comando *.rob* está actualmente *deshabilitado* por un administrador del bot.</div>
+<div class="cmd-line"><span class="cmd-prompt">Admin:</span><span class="cmd-input">.enablecmd rob</span></div>
+<div class="cmd-output">✅ *Comando rehabilitado:* *.rob*
+_Los usuarios pueden volver a utilizarlo normalmente._</div>`,
+
+            balatro: `
+<div class="cmd-line"><span class="cmd-prompt">User:</span><span class="cmd-input">.balatro</span></div>
+<div class="cmd-output">🃏 *BALATRO POKER ROGUELIKE* 🃏
+┌───┐ ┌───┐ ┌───┐ ┌───┐
+│ A │ │ K │ │ Q │ │ J │
+│ ♥ │ │ ♥ │ │ ♥ │ │ ♥ │
+└───┘ └───┘ └───┘ └───┘
+🎯 Meta: 300 pts | 🃏 Jokers (1/5): Popcorn (+20 Mult)
+Usa: *.bplay 1 2 3 4* o *.bshop*</div>`,
+
+            subbot: `
+<div class="cmd-line"><span class="cmd-prompt">User:</span><span class="cmd-input">.subbot code !</span></div>
+<div class="cmd-output">🤖 *CÓDIGO DE VINCULACIÓN GENERADO*
+📱 Número vinculado: +56 9 XXXXXXXX
+🔤 Prefijo propio: *!* (ej: !menu)
+🔢 Código de 8 dígitos: *7294-8193*
+💡 Ve a Dispositivos Vinculados en tu WhatsApp y escribe el código.</div>`
+        };
+
+        function switchDemoTab(tabKey) {
+            document.querySelectorAll('.terminal-tab').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            const screen = document.getElementById('terminal-screen');
+            screen.innerHTML = demoData[tabKey] || '';
+        }
+
+        // Command Library Data
+        const commandList = [
+            { name: '.contar', desc: 'Activa o gestiona el minijuego grupal cooperativo de contar con vidas.', cat: ['v220', 'juegos'] },
+            { name: '.contar set <n>', desc: 'Admin: corrige o fija el número actual del juego de contar.', cat: ['v220', 'admin', 'juegos'] },
+            { name: '.play <canción>', desc: 'Descarga música en MP3 (Pase Admin hasta 30 minutos).', cat: ['v220', 'admin'] },
+            { name: '.video <título/link>', desc: 'Reproduce videos de YouTube en chat (30m usuarios / hasta 10h admins).', cat: ['v220', 'admin'] },
+            { name: '.disablecmd <cmd>', desc: 'Admin: deshabilita temporalmente un comando para todos los usuarios.', cat: ['v220', 'admin'] },
+            { name: '.enablecmd <cmd>', desc: 'Admin: rehabilita un comando deshabilitado.', cat: ['v220', 'admin'] },
+            { name: '.disabledcmds', desc: 'Admin: muestra la lista de comandos deshabilitados actualmente.', cat: ['v220', 'admin'] },
+            { name: '.testers', desc: 'Admin/QA: panel de testers oficiales y estadísticas de auditoría.', cat: ['v220', 'admin'] },
+            { name: '.addtester', desc: 'Admin: añade un tester con detección flexible de mención o teléfono.', cat: ['v220', 'admin'] },
+            { name: '.subbot code', desc: 'Vincula un Sub-bot mediante código alfanumérico de 8 dígitos.', cat: ['subbot'] },
+            { name: '.subbot qr', desc: 'Genera código QR en tiempo real para vincular tu Sub-bot.', cat: ['subbot'] },
+            { name: '.balatro', desc: 'Juego de cartas Roguelike Balatro en arte ASCII móvil.', cat: ['juegos'] },
+            { name: '.rollchar', desc: 'Tira en el Gacha de personajes (Pity de Halloween exclusivo cada 20).', cat: ['juegos', 'economia'] },
+            { name: '.anim reloj', desc: 'Admin: inicia una animación en vivo de reloj de arena con arena cayendo.', cat: ['admin'] },
+            { name: '.anim lluvia', desc: 'Admin: lluvia de monedas en vivo que los usuarios recogen con .recoger.', cat: ['admin', 'economia'] },
+            { name: '.work', desc: 'Trabaja para obtener monedas para tu cuenta o billetera.', cat: ['economia'] },
+            { name: '.daily', desc: 'Reclama tu recompensa diaria de dinero y experiencia.', cat: ['economia'] },
+            { name: '.rob', desc: 'Intenta asaltar la billetera de otro miembro del grupo.', cat: ['economia'] },
+            { name: '.robarbanco', desc: 'Inicia un atraco colaborativo a la Bóveda del Banco Central.', cat: ['economia', 'juegos'] },
+            { name: '.tagall', desc: 'Menciona a todos los integrantes del grupo.', cat: ['admin'] },
+            { name: '.kick', desc: 'Expulsa a un miembro que incumpla las reglas del grupo.', cat: ['admin'] }
+        ];
+
+        let currentCat = 'all';
+
+        function showToast(text) {
+            const toast = document.getElementById('toastNotify');
+            document.getElementById('toastMsg').innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2400);
+        }
+
+        function copyCmd(cmd) {
+            navigator.clipboard.writeText(cmd).then(() => {
+                showToast(`Copiado: ${cmd}`);
+            }).catch(() => {
+                showToast(`Comando: ${cmd}`);
+            });
+        }
+
+        function renderCmds(filterText = '') {
+            const container = document.getElementById('cmdResultsGrid');
+            const clean = filterText.toLowerCase().trim();
+            const filtered = commandList.filter(item => {
+                const matchCat = currentCat === 'all' || item.cat.includes(currentCat);
+                const matchText = !clean || item.name.toLowerCase().includes(clean) || item.desc.toLowerCase().includes(clean);
+                return matchCat && matchText;
+            });
+
+            document.getElementById('cmd-count-badge').innerText = `${filtered.length} comandos encontrados`;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 2rem; color:var(--text-muted);">No se encontraron comandos para "${filterText}".</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => `
+                <div class="cmd-item" onclick="copyCmd('${item.name.split(' ')[0]}')" title="Click para copiar">
+                    <div class="cmd-item-header">
+                        <span class="cmd-name">${item.name}</span>
+                        <span class="cmd-badge"><i class="fa-regular fa-copy"></i> Copiar</span>
+                    </div>
+                    <div class="cmd-desc">${item.desc}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterCmdCategory(cat) {
+            currentCat = cat;
+            document.querySelectorAll('.cmd-chip').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderCmds(document.getElementById('cmdSearchInput').value);
+        }
+
+        document.getElementById('cmdSearchInput').addEventListener('input', (e) => {
+            renderCmds(e.target.value);
+        });
+
+        // Initialize commands
+        renderCmds();
+
+        // ==========================================
+        // 🌐 LIVE WEB PAIRING CLIENT LOGIC
+        // ==========================================
+        let selectedPairingMethod = 'code';
+        let pollingTimer = null;
+        let lastPairingCode = '';
+
+        function setPairingMethod(method) {
+            selectedPairingMethod = method;
+            const btnCode = document.getElementById('btnMethodCode');
+            const btnQR = document.getElementById('btnMethodQR');
+
+            if (method === 'code') {
+                btnCode.className = 'btn-subbot-code';
+                btnQR.className = 'btn-secondary-cta';
+            } else {
+                btnCode.className = 'btn-secondary-cta';
+                btnQR.className = 'btn-subbot-qr';
+            }
+        }
+
+        async function startWebPairing() {
+            const phoneInput = document.getElementById('subbotPhoneInput');
+            const prefixInput = document.getElementById('subbotPrefixInput');
+            const phone = phoneInput.value.replace(/[^0-9]/g, '');
+            const prefix = prefixInput.value.trim();
+
+            if (!phone || phone.length < 8) {
+                alert('⚠️ Por favor ingresa un número de teléfono válido con código de país (ej: 56985529966).');
+                phoneInput.focus();
+                return;
+            }
+
+            const resultBox = document.getElementById('pairingResultBox');
+            const spinner = document.getElementById('pairingSpinner');
+            const spinnerText = document.getElementById('spinnerText');
+            const codeArea = document.getElementById('codeDisplayArea');
+            const qrArea = document.getElementById('qrDisplayArea');
+            const successArea = document.getElementById('connectedSuccessArea');
+            const btnStart = document.getElementById('btnStartPairing');
+
+            resultBox.style.display = 'block';
+            spinner.style.display = 'block';
+            codeArea.style.display = 'none';
+            qrArea.style.display = 'none';
+            successArea.style.display = 'none';
+            btnStart.disabled = true;
+            btnStart.style.opacity = '0.7';
+            spinnerText.innerText = `Solicitando sesión para +${phone} en WhatsApp...`;
+
+            if (pollingTimer) clearInterval(pollingTimer);
+
+            try {
+                const response = await fetch('/api/subbot/pair', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        phone,
+                        method: selectedPairingMethod,
+                        prefix: prefix || null
+                    })
+                });
+
+                const resData = await response.json();
+                if (!response.ok || !resData.success) {
+                    throw new Error(resData.error || 'No se pudo iniciar la vinculación.');
+                }
+
+                spinnerText.innerText = selectedPairingMethod === 'code' 
+                    ? 'Generando código de 8 dígitos...' 
+                    : 'Generando código QR...';
+
+                // Iniciar Polling de estado cada 1.5 segundos
+                let attempts = 0;
+                pollingTimer = setInterval(async () => {
+                    attempts++;
+                    if (attempts > 80) { // 2 minutos timeout
+                        clearInterval(pollingTimer);
+                        spinner.style.display = 'none';
+                        btnStart.disabled = false;
+                        btnStart.style.opacity = '1';
+                        alert('⏳ Tiempo de espera agotado. Vuelve a intentar.');
+                        return;
+                    }
+
+                    try {
+                        const checkRes = await fetch(`/api/subbot/status?phone=${phone}`);
+                        const statusData = await checkRes.json();
+
+                        if (statusData.status === 'code_ready' && statusData.code) {
+                            spinner.style.display = 'none';
+                            codeArea.style.display = 'block';
+                            qrArea.style.display = 'none';
+                            lastPairingCode = statusData.code;
+                            document.getElementById('pairingCodeValue').innerText = statusData.code;
+                            btnStart.disabled = false;
+                            btnStart.style.opacity = '1';
+                        } else if (statusData.status === 'qr_ready') {
+                            spinner.style.display = 'none';
+                            codeArea.style.display = 'none';
+                            qrArea.style.display = 'block';
+                            if (statusData.qrImage) {
+                                document.getElementById('pairingQRImg').src = statusData.qrImage;
+                            }
+                            btnStart.disabled = false;
+                            btnStart.style.opacity = '1';
+                        } else if (statusData.status === 'connected' || statusData.connected) {
+                            clearInterval(pollingTimer);
+                            spinner.style.display = 'none';
+                            codeArea.style.display = 'none';
+                            qrArea.style.display = 'none';
+                            successArea.style.display = 'block';
+                            btnStart.disabled = false;
+                            btnStart.style.opacity = '1';
+                            showToast('🎉 ¡Sub-bot conectado con éxito!');
+                        } else if (statusData.status === 'error') {
+                            clearInterval(pollingTimer);
+                            spinner.style.display = 'none';
+                            btnStart.disabled = false;
+                            btnStart.style.opacity = '1';
+                            alert(`❌ Error al conectar: ${statusData.error || 'Ocurrió un fallo'}`);
+                        }
+                    } catch (pollErr) {
+                        console.warn('Error en polling:', pollErr);
+                    }
+                }, 1500);
+
+            } catch (err) {
+                spinner.style.display = 'none';
+                btnStart.disabled = false;
+                btnStart.style.opacity = '1';
+                alert(`❌ ${err.message}`);
+            }
+        }
+
+        function copyPairingCode() {
+            if (!lastPairingCode) return;
+            navigator.clipboard.writeText(lastPairingCode.replace(/[^a-zA-Z0-9]/g, '')).then(() => {
+                showToast(`Código copiado: ${lastPairingCode}`);
+            }).catch(() => {
+                showToast(lastPairingCode);
+            });
+        }
+    </script>
 </body>
 </html>
