@@ -1056,7 +1056,7 @@
             </div>
 
             <!-- Inputs Form -->
-            <div style="display:flex; gap:12px; max-width:620px; margin:0 auto 1.2rem; flex-wrap:wrap;">
+            <div style="display:flex; gap:12px; max-width:620px; margin:0 auto 0.8rem; flex-wrap:wrap;">
                 <div style="flex:2; min-width:220px; text-align:left;">
                     <label style="font-size:0.78rem; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:4px; display:block;">Número WhatsApp (con código de país):</label>
                     <input type="tel" id="subbotPhoneInput" class="cmd-search-input" placeholder="Ej: 56985529966" style="width:100%; border-radius:10px;">
@@ -1067,9 +1067,20 @@
                 </div>
             </div>
 
+            <!-- Server URL Config (Optional for GitHub Pages / remote hosting) -->
+            <div id="remoteServerConfig" style="max-width:620px; margin:0 auto 1.2rem; text-align:left;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <label style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:600;">
+                        <i class="fa-solid fa-server"></i> Servidor API del Bot:
+                    </label>
+                    <span id="serverStatusBadge" style="font-size:0.75rem; color:var(--primary); font-weight:600;">Detectando...</span>
+                </div>
+                <input type="text" id="apiServerHost" class="cmd-search-input" placeholder="http://localhost:3000 o IP/Dominio de tu VPS" style="width:100%; font-size:0.85rem; padding:0.6rem 1rem; border-radius:10px;">
+            </div>
+
             <div style="display:flex; justify-content:center; gap:12px; margin-bottom:1.2rem;">
-                <button type="button" id="btnStartPairing" onclick="startWebPairing()" class="btn-subbot-code" style="cursor:pointer; border:none; padding:0.9rem 2.2rem; font-size:1.05rem;">
-                    <i class="fa-solid fa-paper-plane"></i> Generar Acceso en Vivo
+                <button type="button" id="btnStartPairing" onclick="startWebPairing()" class="btn-subbot-code" style="cursor:pointer; border:none; padding:0.95rem 2.4rem; font-size:1.1rem; box-shadow:0 8px 30px var(--primary-glow);">
+                    <i class="fa-solid fa-bolt"></i> Vincular Sub-bot Ahora
                 </button>
             </div>
 
@@ -1696,6 +1707,52 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>`,
             }
         }
 
+        function getApiBaseUrl() {
+            const custom = document.getElementById('apiServerHost')?.value?.trim();
+            if (custom) {
+                return custom.replace(/\/+$/, '');
+            }
+            // Si la página se abre por http/https local
+            if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+                return window.location.origin;
+            }
+            // Si se abre desde archivo local (file://) o GitHub Pages, por defecto apunta al localhost del bot
+            return 'http://localhost:3000';
+        }
+
+        // Detectar estado del servidor en la carga
+        async function checkServerHealth() {
+            const badge = document.getElementById('serverStatusBadge');
+            const hostInput = document.getElementById('apiServerHost');
+            const base = getApiBaseUrl();
+            if (hostInput && !hostInput.value) {
+                hostInput.value = base;
+            }
+
+            try {
+                const res = await fetch(`${base}/api/subbot/info`, { method: 'GET', signal: AbortSignal.timeout(3000) });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (badge) {
+                        badge.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> En línea (${data.availableSlots} cupos)`;
+                        badge.style.color = 'var(--primary)';
+                    }
+                } else {
+                    if (badge) {
+                        badge.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="color:var(--warning);"></i> No disponible`;
+                        badge.style.color = 'var(--warning)';
+                    }
+                }
+            } catch (e) {
+                if (badge) {
+                    badge.innerHTML = `<i class="fa-solid fa-plug" style="color:var(--text-muted);"></i> Conecta a: ${base}`;
+                    badge.style.color = 'var(--text-muted)';
+                }
+            }
+        }
+
+        setTimeout(checkServerHealth, 800);
+
         async function startWebPairing() {
             const phoneInput = document.getElementById('subbotPhoneInput');
             const prefixInput = document.getElementById('subbotPrefixInput');
@@ -1727,8 +1784,10 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>`,
 
             if (pollingTimer) clearInterval(pollingTimer);
 
+            const apiBase = getApiBaseUrl();
+
             try {
-                const response = await fetch('/api/subbot/pair', {
+                const response = await fetch(`${apiBase}/api/subbot/pair`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1761,7 +1820,7 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>`,
                     }
 
                     try {
-                        const checkRes = await fetch(`/api/subbot/status?phone=${phone}`);
+                        const checkRes = await fetch(`${apiBase}/api/subbot/status?phone=${phone}`);
                         const statusData = await checkRes.json();
 
                         if (statusData.status === 'code_ready' && statusData.code) {
@@ -1806,7 +1865,7 @@ Usa: *.bplay 1 2 3 4* o *.bshop*</div>`,
                 spinner.style.display = 'none';
                 btnStart.disabled = false;
                 btnStart.style.opacity = '1';
-                alert(`❌ ${err.message}`);
+                alert(`❌ ${err.message}\n\nAsegúrate de que el bot esté iniciado con 'npm start' o 'node bot.js'.`);
             }
         }
 
